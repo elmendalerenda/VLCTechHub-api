@@ -8,8 +8,14 @@ module VLCTechHub
       end
 
       def tweet(attrs)
-        company = attrs['company']['twitter'] || attrs['company']['name']
-        super("Nueva #ofertaDeEmpleo: #{attrs['title']} por #{company}  http://vlctechhub.org/job/board/#{attrs['publish_id']}")
+        super("Nueva #ofertaDeEmpleo: #{attrs['title']} por #{company(attrs)}  http://vlctechhub.org/job/board/#{attrs['publish_id']}")
+      end
+
+      private
+
+      def company(attrs)
+        [attrs['company']['twitter'], attrs['company']['name']]
+          .find { |e| !e.to_s.empty? }
       end
     end
   end

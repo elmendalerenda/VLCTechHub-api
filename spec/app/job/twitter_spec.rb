@@ -4,7 +4,7 @@ describe VLCTechHub::Job::Twitter do
   let(:job) do
     {
       'title' => 'rockstar ninja node developer',
-      'company' => { 'name' => 'acme inc.'},
+      'company' => { 'name' => 'acme inc.', 'twitter' => ''},
       'publish_id' => 'abc'
     }
   end
@@ -13,7 +13,7 @@ describe VLCTechHub::Job::Twitter do
   let(:subject) { described_class.new(twitter_api) }
 
   describe '#tweet' do
-    it 'sends a tweet with title ans company' do
+    it 'sends a tweet with title and company' do
       expect(twitter_api).to receive(:update)
         .with(string_that_includes(['#ofertaDeEmpleo', job['title'], job['company']['name']]))
 
